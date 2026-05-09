@@ -1,0 +1,798 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AzurBuilder API Documentation",
+    "version": "1.0.0",
+    "description": "This is the OpenAPI specification for AzurBuilder API."
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "Current Environment"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Equipment": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "number"
+          },
+          "rarity": {
+            "type": "number"
+          },
+          "nationality": {
+            "type": "number"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "type",
+          "rarity",
+          "nationality",
+          "icon"
+        ]
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "rarity": {
+            "type": "number"
+          },
+          "type": {
+            "type": "number"
+          },
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "icon",
+          "rarity",
+          "type",
+          "id"
+        ]
+      },
+      "Ship": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "painting": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "number"
+          },
+          "rarity": {
+            "type": "number"
+          },
+          "type": {
+            "type": "number"
+          },
+          "tag_list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "group_type": {
+            "type": "number"
+          },
+          "trans": {
+            "type": "boolean"
+          },
+          "ship_equip": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "painting",
+          "nationality",
+          "rarity",
+          "type",
+          "tag_list",
+          "group_type",
+          "trans",
+          "ship_equip"
+        ]
+      },
+      "ShipSkill": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "group_type": {
+            "type": "number"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "desc": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "number"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "desc",
+                "icon",
+                "name"
+              ]
+            }
+          },
+          "trans_skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "desc": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "number"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "desc",
+                "icon",
+                "name"
+              ]
+            }
+          },
+          "shipName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "group_type",
+          "skills",
+          "trans_skills",
+          "shipName"
+        ]
+      },
+      "ShipTransform": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "transform": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "descrip": {
+                "type": "string"
+              },
+              "use_gold": {
+                "type": "number"
+              },
+              "use_item": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "use_ship": {
+                "type": "number"
+              },
+              "max_level": {
+                "type": "number"
+              },
+              "star_limit": {
+                "type": "number"
+              },
+              "level_limit": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "descrip",
+              "use_gold",
+              "use_item",
+              "use_ship",
+              "max_level",
+              "star_limit",
+              "level_limit"
+            ]
+          },
+          "shipName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "transform",
+          "shipName"
+        ]
+      },
+      "SkillDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "desc",
+          "icon",
+          "name"
+        ]
+      },
+      "TransformDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "descrip": {
+            "type": "string"
+          },
+          "use_gold": {
+            "type": "number"
+          },
+          "use_item": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "use_ship": {
+            "type": "number"
+          },
+          "max_level": {
+            "type": "number"
+          },
+          "star_limit": {
+            "type": "number"
+          },
+          "level_limit": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "descrip",
+          "use_gold",
+          "use_item",
+          "use_ship",
+          "max_level",
+          "star_limit",
+          "level_limit"
+        ]
+      },
+      "TransSkillDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "desc",
+          "icon",
+          "name"
+        ]
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid request parameters"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "400"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Authentication required"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "401"
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Access denied"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "403"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource not found"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource already exists"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "409"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "An unexpected error occurred"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/equipment": {
+      "get": {
+        "operationId": "get-equipment",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Equipment"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/equipment/{name}": {
+      "get": {
+        "operationId": "get-equipment-{name}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "name",
+            "description": "Path parameter: name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Equipment"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/item": {
+      "get": {
+        "operationId": "get-item",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/item/{id}": {
+      "get": {
+        "operationId": "get-item-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "example": 123,
+            "description": "Path parameter: id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/ship": {
+      "get": {
+        "operationId": "get-ship",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Ship"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ship"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/ship/{name}": {
+      "get": {
+        "operationId": "get-ship-{name}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Ship"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "name",
+            "description": "Path parameter: name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ship"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/ship/{name}/skill": {
+      "get": {
+        "operationId": "get-ship-{name}-skill",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Ship"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "name",
+            "description": "Path parameter: name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShipSkill"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/ship/{name}/transform": {
+      "get": {
+        "operationId": "get-ship-{name}-transform",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Ship"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "name",
+            "description": "Path parameter: name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShipTransform"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Equipment"
+    },
+    {
+      "name": "Item"
+    },
+    {
+      "name": "Ship"
+    }
+  ]
+}
